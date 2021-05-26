@@ -883,7 +883,7 @@ contract LolCat is Context, IERC20, Ownable {
         _liquidityFee = liquidityFee;
     }
     function setnumTokensSellToAddToLiquidity(uint256 _Amount) external onlyOwner(){
-        
+         numTokensSellToAddToLiquidity=_Amount;
     }
    
     function setMaxTxPercent(uint256 maxTxPercent) external onlyOwner() {
