@@ -695,7 +695,7 @@ contract LolCat is Context, IERC20, Ownable {
     address[] private _excluded;
    
     uint256 private constant MAX = ~uint256(0);
-    uint256 private _tTotal = 38000000000 * 1e18;
+    uint256 private _tTotal = 3800000 * 1e18;
     uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
 
