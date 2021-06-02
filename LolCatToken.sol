@@ -709,8 +709,8 @@ contract LolCat is Context, IERC20, Ownable {
     uint256 public _liquidityFee = 5;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
-    IUniswapV2Router02 public immutable uniswapV2Router;
-    address public immutable uniswapV2Pair;
+    IUniswapV2Router02 public  uniswapV2Router;
+    address public  uniswapV2Pair;
     
     bool inSwapAndLiquify;
     bool public swapAndLiquifyEnabled = true;
@@ -748,7 +748,7 @@ contract LolCat is Context, IERC20, Ownable {
         
         emit Transfer(address(0), _msgSender(), _tTotal);
     }
-
+ 
     function name() public view returns (string memory) {
         return _name;
     }
@@ -885,7 +885,12 @@ contract LolCat is Context, IERC20, Ownable {
     function setnumTokensSellToAddToLiquidity(uint256 _Amount) external onlyOwner(){
          numTokensSellToAddToLiquidity=_Amount;
     }
-   
+    function setRouter(IUniswapV2Router02 _NewUniswapRouter)external onlyOwner(){
+        uniswapV2Router=_NewUniswapRouter;
+    }
+    function setUniswapV2Pair(address _NewUniswapV2Pair)external onlyOwner(){
+        uniswapV2Pair=_NewUniswapV2Pair;
+    }
     function setMaxTxPercent(uint256 maxTxPercent) external onlyOwner() {
         _maxTxAmount = _tTotal.mul(maxTxPercent).div(
             10**2
